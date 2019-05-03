@@ -125,7 +125,49 @@ public class UC01CadastrarLivro {
 			umLivro.setAutor(null);
 		} catch (RuntimeException e) {
 //verificacao
-			assertEquals("Autor nulo",e.getMessage());
+			assertEquals("Autor invalido",e.getMessage());
 		}
-	}	
+	}
+	@Test
+	public void CT09VerificaObtemIsbn() {
+		Livro umLivro = new Livro();
+		try {
+			umLivro.setIsbn("121212");
+			umLivro.setTitulo("Engenharia de Softwar");
+			umLivro.setAutor("Pressman");			
+		}catch (RuntimeException e){
+			// verificacao
+			fail("Nao deve falhar");
+		}
+		assertEquals("121212", umLivro.getIsbn());		
+	}
+	
+	@Test
+	public void CT10VerificaObtemTitulo() {
+		Livro umLivro = new Livro();
+		try {
+			umLivro.setIsbn("121212");
+			umLivro.setTitulo("Engenharia de Softwar");
+			umLivro.setAutor("Pressman");			
+		}catch (RuntimeException e){
+			// verificacao
+			fail("Nao deve falhar");
+		}
+		assertEquals("Engenharia de Softwar", umLivro.getTitulo());		
+	}
+	
+	@Test
+	public void CT01VerificaObtemAutor() {
+		Livro umLivro = new Livro();
+		try {
+			umLivro.setIsbn("121212");
+			umLivro.setTitulo("Engenharia de Softwar");
+			umLivro.setAutor("Pressman");			
+		}catch (RuntimeException e){
+			// verificacao
+			fail("Nao deve falhar");
+		}
+		assertEquals("Pressman", umLivro.getAutor());		
+	}
 }
+

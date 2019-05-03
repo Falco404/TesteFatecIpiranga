@@ -33,7 +33,7 @@ public class Livro {
 
 	public void setAutor(String autor) {
 		if (autor == "" | autor == null) {
-			throw new RuntimeException("autor invalido");
+			throw new RuntimeException("Autor invalido");
 		}
 		this.autor = autor;
 	}
