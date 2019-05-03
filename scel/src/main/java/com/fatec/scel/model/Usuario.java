@@ -19,6 +19,7 @@ public class Usuario {
 	public String getNome() {
 		return nome;
 	}
+	//kek
 
 	public void setNome(String nome) {
 		if (nome == "" || nome == null) {
