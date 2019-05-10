@@ -1,59 +1,54 @@
 package com.fatec.scel.model;
 
+import java.util.Set;
+import java.util.UUID;
+import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "Usuario")
 public class Usuario {
-	private String ra;
-	private String nome;
+	@Id
+	private UUID id;
+	private String email;
+	private String password;
+	@ElementCollection(fetch = FetchType.EAGER)
+	@Enumerated(EnumType.STRING)
+	@NotNull
+	private Set<PapelDoUsuario> papel;
 
-	public String getRa() {
-		return ra;
+	protected Usuario() {
 	}
 
-	public void setRa(String ra) {
-		if (ra == "" || ra == null) {
-			throw new RuntimeException("RA Invalido!");
-		}
-		this.ra = ra;
-				
+	public Usuario(UUID id, String email, String password, Set<PapelDoUsuario> papel) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.papel = papel;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-	//kek
-
-	public void setNome(String nome) {
-		if (nome == "" || nome == null) {
-			throw new RuntimeException("Nome Invalido!");
-		}		
-		this.nome = nome;
+	public UUID getId() {
+		return id;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		
-		if (obj == null)
-			return false;
-		
-		if (getClass() != obj.getClass())
-			return false;
-		
-		Usuario other = (Usuario) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-			
-		} else if (!nome.equals(other.nome))
-			return false;
-		
-		if (ra == null) {
-			if (other.ra != null)
-				return false;
-			
-		} else if (!ra.equals(other.ra))
-			return false;
-		
-		return true;
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Set<PapelDoUsuario> getPapel() {
+		return papel;
+	}
+
+	public String toString() {
+		return getEmail();
 	}
 }
